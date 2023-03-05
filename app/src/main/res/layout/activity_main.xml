@@ -41,21 +41,31 @@
         android:textSize="8pt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etnInput"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintVertical_bias="0.212" />
 
     <Button
         android:id="@+id/btnAbschicken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/lightgrey"
         android:text="Abschicken"
         android:textColor="@color/black"
-        android:backgroundTint="@color/lightgrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvServerResponse" />
+        app:layout_constraintTop_toBottomOf="@+id/tvServerResponse"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <Button
+        android:id="@+id/btnSort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nr. 6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="547dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

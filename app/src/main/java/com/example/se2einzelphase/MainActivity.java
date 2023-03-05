@@ -20,7 +20,7 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAbschicken;
+    private Button btnAbschicken, btnSort;
     private TextView tvResponse;
     private Thread thread;
     private EditText etnInput;
