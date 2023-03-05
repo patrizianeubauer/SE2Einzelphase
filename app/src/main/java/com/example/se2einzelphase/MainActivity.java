@@ -17,6 +17,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,21 +50,42 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String input = etnInput.getText().toString();
 
-                int [] array = new int[input.length()];
-                for (int i = 0; i < input.length(); i++) {
-                    array[i] = Integer.parseInt(input.charAt(i)+"");
+
+                int number, count = 0;
+                for(int i = 0; i < input.length(); i++) {
+                    number =  Integer.parseInt(input.charAt(i)+"");
+                    if(!isPrim(number)) {
+                        count++;
+                    }
                 }
 
-                int [] newarray = bubbleSort(array);
-                String sortedArrayString = "";
-
-                for(int i = 0; i < newarray.length; i++) {
-                    sortedArrayString += newarray[i] + "";
+                int [] array = new int[count];
+                for(int i = 0, j = 0; i < input.length() && j < count; i++, j++) {
+                    number =  Integer.parseInt(input.charAt(i)+"");
+                    if(!isPrim(number)) {
+                        array[j] = number;
+                        System.out.println(number);
+                    } else {
+                        j--;
+                    }
                 }
+                System.out.println(array.length);
 
-                tvResponse.setText(sortedArrayString);
+                tvResponse.setText(Arrays.toString(bubbleSort(array)).replaceAll("\\[|\\]|,|\\s", ""));
             }
         });
+    }
+
+    public static boolean isPrim(int value) {
+        if (value <= 2) {
+            return (value == 2);
+        }
+        for (int i = 2; i * i <= value; i++) {
+            if (value % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static int[] bubbleSort(int[] array) {
