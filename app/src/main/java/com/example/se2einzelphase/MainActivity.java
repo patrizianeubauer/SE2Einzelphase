@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         btnAbschicken = findViewById(R.id.btnAbschicken);
         tvResponse = findViewById(R.id.tvServerResponse);
         etnInput = findViewById(R.id.etnInput);
+        btnSort = findViewById(R.id.btnSort);
 
         btnAbschicken.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,9 +43,44 @@ public class MainActivity extends AppCompatActivity {
                 thread.start();
             }
         });
+
+        btnSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String input = etnInput.getText().toString();
+
+                int [] array = new int[input.length()];
+                for (int i = 0; i < input.length(); i++) {
+                    array[i] = Integer.parseInt(input.charAt(i)+"");
+                }
+
+                int [] newarray = bubbleSort(array);
+                String sortedArrayString = "";
+
+                for(int i = 0; i < newarray.length; i++) {
+                    sortedArrayString += newarray[i] + "";
+                }
+
+                tvResponse.setText(sortedArrayString);
+            }
+        });
     }
 
-    class Network  implements Runnable {
+    public static int[] bubbleSort(int[] array) {
+        int help;
+        for (int i = 1; i < array.length; i++) {
+            for (int j = 0; j < array.length - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    help = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = help;
+                }
+            }
+        }
+        return array;
+    }
+
+    class Network implements Runnable {
         public PrintWriter out;
         public BufferedReader in;
 
