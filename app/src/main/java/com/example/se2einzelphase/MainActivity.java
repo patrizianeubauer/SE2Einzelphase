@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         btnAbschicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Network stuff = new Network();
-                thread = new Thread(stuff);
+                Network network = new Network();
+                thread = new Thread(network);
                 thread.start();
             }
         });
@@ -50,19 +50,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String input = etnInput.getText().toString();
 
-
                 int number, count = 0;
-                for(int i = 0; i < input.length(); i++) {
-                    number =  Integer.parseInt(input.charAt(i)+"");
-                    if(!isPrim(number)) {
+                for (int i = 0; i < input.length(); i++) {
+                    number = Integer.parseInt(input.charAt(i) + "");
+                    if (!isPrim(number)) {
                         count++;
                     }
                 }
 
-                int [] array = new int[count];
-                for(int i = 0, j = 0; i < input.length() && j < count; i++, j++) {
-                    number =  Integer.parseInt(input.charAt(i)+"");
-                    if(!isPrim(number)) {
+                int[] array = new int[count];
+                for (int i = 0, j = 0; i < input.length() && j < count; i++, j++) {
+                    number = Integer.parseInt(input.charAt(i) + "");
+                    if (!isPrim(number)) {
                         array[j] = number;
                         System.out.println(number);
                     } else {
@@ -107,11 +106,11 @@ public class MainActivity extends AppCompatActivity {
         public BufferedReader in;
 
         public void run() {
-            int p = 53212;
-            String h = "se2-isys.aau.at";
+            int port = 53212;
+            String host = "se2-isys.aau.at";
             try {
-                InetAddress serverAddr = InetAddress.getByName(h);
-                Socket socket = new Socket(serverAddr, p);
+                InetAddress serverAddress = InetAddress.getByName(host);
+                Socket socket = new Socket(serverAddress, port);
 
                 // connection -> setup the read (in) and write (out)
                 out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
@@ -125,14 +124,14 @@ public class MainActivity extends AppCompatActivity {
                     String response = in.readLine();
                     tvResponse.setText(response);
                 } catch (Exception e) {
-                    System.out.println("Error");
+                    System.out.println("Error: " + e);
                 } finally {
                     in.close();
                     out.close();
                     socket.close();
                 }
             } catch (Exception e) {
-                System.out.println("Error");
+                System.out.println("Error: " + e);
             }
         }
     }
