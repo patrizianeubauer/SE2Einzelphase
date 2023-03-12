@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static boolean isPrim(int value) {
-        if (value <= 2) {
-            return (value == 2);
+        if (value <= 1) {
+            return false;
         }
-        for (int i = 2; i * i <= value; i++) {
+        for (int i = 2; i < value; i++) {
             if (value % i == 0) {
                 return false;
             }
@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static int[] bubbleSort(int[] array) {
         int help;
-        for (int i = 1; i < array.length; i++) {
-            for (int j = 0; j < array.length - i; j++) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     help = array[j];
                     array[j] = array[j + 1];
